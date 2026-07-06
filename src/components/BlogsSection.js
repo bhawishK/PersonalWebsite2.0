@@ -73,6 +73,13 @@ const StudyNotesSection = () => {
       updatedAt: "Sept 2025",
       pdfLink: "/pdfs/ALLSQL.pdf",
     },
+    {
+      subject: "DevOps",
+      topic: "Kubernetes",
+      summary: "Basic DevOps",
+      updatedAt: "July 2026",
+      pdfLink: "/pdfs/Spring Kubernetes.pdf",
+    },
 
   ];
 
