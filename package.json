@@ -14,7 +14,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "framer-motion": "^12.0.11",
     "install": "^0.13.0",
-    "next": "^15.1.6",
+    "next": "^15.5.24",
     "npm": "^11.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "eslint": "^9",
-    "eslint-config-next": "15.1.6",
+    "eslint-config-next": "^15.5.24",
     "gray-matter": "^4.0.3",
     "postcss": "^8",
     "remark-highlight.js": "^8.0.0",
