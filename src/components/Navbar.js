@@ -17,10 +17,10 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 border-b-4 border-ink bg-paper">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-          <span className="flex h-8 w-8 items-center justify-center border-[3px] border-ink bg-coral font-display text-xs text-paper shadow-px-sm">
+          <span className="flex h-10 w-10 items-center justify-center border-[3px] border-ink bg-coral font-display text-sm text-paper shadow-px-sm">
             BK
           </span>
-          <span className="hidden font-display text-sm uppercase sm:inline">Bhawish Kumar</span>
+          <span className="hidden font-display text-base uppercase leading-none sm:inline">Bhawish Kumar</span>
         </Link>
 
         <div className="hidden items-center gap-1 xl:flex">
