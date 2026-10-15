@@ -1,24 +1,31 @@
-"use client"
-import { faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-const Footer = () => {
-    return (
-      <footer className="py-4 bg-white p-4 md:p-8 flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-12 border border-white/10 pt-5 mt-5">
-        <div className="container mx-auto text-center">
-          <p className="text-sm font-seri text-black">
-            &copy; {new Date().getFullYear()} Bhawish Kumar Personal Website. All rights reserved.
-          </p>
-          <div className="mt-2">
-          <div className="mt-4 flex justify-center">
-          
-          <a href="https://www.linkedin.com/in/bhawishkumar/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-300 mx-2">
-            <FontAwesomeIcon icon={faLinkedin} size="lg" />
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FiMail } from "react-icons/fi";
+import { PROFILE } from "@/data/resume";
+
+export default function Footer() {
+  return (
+    <footer id="contact" className="bg-grape text-paper">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-4 py-16 text-center sm:px-6">
+        <h2 className="font-display text-lg uppercase leading-relaxed sm:text-2xl">Get in touch</h2>
+        <p className="max-w-xl text-lg leading-snug">
+          Open to research collaborations, internships, and helping juniors get started.
+        </p>
+        <div className="flex flex-wrap justify-center gap-3 text-ink">
+          <a href={`mailto:${PROFILE.email}`} className="px-btn bg-sun">
+            <FiMail aria-hidden /> Email
+          </a>
+          <a href={PROFILE.github} target="_blank" rel="noopener noreferrer" className="px-btn bg-paper">
+            <FaGithub aria-hidden /> GitHub
+          </a>
+          <a href={PROFILE.linkedin} target="_blank" rel="noopener noreferrer" className="px-btn bg-mint">
+            <FaLinkedin aria-hidden /> LinkedIn
           </a>
         </div>
-          </div>
-        </div>
-      </footer>
-    );
-  };
-  
-  export default Footer;
+        <p className="font-term text-xl">{PROFILE.email}</p>
+      </div>
+      <div className="border-t-4 border-ink bg-ink py-3 text-center font-term text-lg text-paper/80">
+        © {new Date().getFullYear()} {PROFILE.name} · {PROFILE.location}
+      </div>
+    </footer>
+  );
+}

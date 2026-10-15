@@ -1,41 +1,29 @@
-"use client";
-import React from "react";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import ExperienceSection from "@/components/ExperienceSection";
-import ProjectsSection from "@/components/ProjectsSection";
-import BlogsSection from "@/components/BlogsSection";
-import HobbiesNotesSection from "@/components/HobbiesNotesSection";
-import ContactSection from "@/components/ContactSection";
-import SectionIndicator from "@/components/SectionIndicator";
-import ProgressBar from "@/components/ProgressBar";
-import { useScrollNavigation } from "@/hooks/useScrollNavigation";
+import PixelHero from "@/components/PixelHero";
+import ProfileSection from "@/components/sections/ProfileSection";
+import EducationSection from "@/components/sections/EducationSection";
+import ResearchSection from "@/components/sections/ResearchSection";
+import ExperienceSection from "@/components/sections/ExperienceSection";
+import ProjectsSection from "@/components/sections/ProjectsSection";
+import AchievementsSection from "@/components/sections/AchievementsSection";
+import LeadershipSection from "@/components/sections/LeadershipSection";
+import SkillsSection from "@/components/sections/SkillsSection";
+import JuniorsSection from "@/components/sections/JuniorsSection";
+import InspirationSection from "@/components/sections/InspirationSection";
 
 export default function Home() {
-  const sections = [
-    { id: 'hero', title: 'Introduction', component: <Hero /> },
-    { id: 'experience', title: 'Experience', component: <ExperienceSection /> },
-    { id: 'projects', title: 'Projects', component: <ProjectsSection /> },
-    { id: 'Study Notes', title: 'Study Notes ', component: <BlogsSection /> },
-    { id: 'What I do For Myself', title: 'What I do For Myself', component: <HobbiesNotesSection /> },
-  ];
-
-  const { currentSection, containerRef } = useScrollNavigation(sections);
-
   return (
-    <div ref={containerRef} className="h-screen overflow-y-scroll snap-y snap-proximity scrollbar-hide">
-      {/* Section Indicator */}
-      <SectionIndicator sections={sections} currentSection={currentSection} />
-
-      {/* Progress Bar */}
-      <ProgressBar currentSection={currentSection} totalSections={sections.length} />
-
-      {/* Sections */}
-      {sections.map((section, index) => (
-        <div key={section.id} data-section-index={index} className="min-h-screen snap-start">
-          {section.component}
-        </div>
-      ))}
-    </div>
+    <>
+      <PixelHero />
+      <ProfileSection />
+      <EducationSection />
+      <ResearchSection />
+      <ExperienceSection />
+      <ProjectsSection />
+      <AchievementsSection />
+      <LeadershipSection />
+      <SkillsSection />
+      <JuniorsSection />
+      <InspirationSection />
+    </>
   );
 }

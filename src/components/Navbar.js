@@ -1,126 +1,89 @@
 "use client";
-// components/Navbar.js
-import { useState } from 'react';
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { NAV, PROFILE } from "@/data/resume";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(null);
+  const pathname = usePathname();
+  const onHome = pathname === "/";
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  useEffect(() => {
+    if (!onHome) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => e.isIntersecting && setActive(e.target.id));
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    NAV.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, [onHome]);
+
+  const href = (id) => (onHome ? `#${id}` : `/#${id}`);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-30 ">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center space-x-2 pt-4">
-            <img src="/logo.png" alt="Logo" className="h-14" />
-            <div className="flex flex-col">
-              <a
-                href="/"
-                className="hover:text-[#ffffff] transition-colors duration-300 text-2xl font-bold"
-                style={{
-                  color: "#f9e243",
-                  fontFamily: '"Playfair Display", serif',
-                }}
-              >
-                KUMAR
-              </a>
-            </div>
-          </div>
+    <nav className="sticky top-0 z-50 border-b-4 border-ink bg-paper">
+      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6">
+        <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
+          <span className="flex h-8 w-8 items-center justify-center border-[3px] border-ink bg-coral font-display text-[10px] text-paper shadow-px-sm">
+            BK
+          </span>
+          <span className="hidden font-display text-[10px] uppercase sm:inline">Bhawish Kumar</span>
+        </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              <a
-                href="/blog"
-                className="text-white hover:text-gray-300 px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Blogs
-              </a>
-              <a
-                href="/interests"
-                className="text-white hover:text-gray-300 px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Interests
-              </a>
-            </div>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button
-              onClick={toggleMenu}
-              className="text-white focus:outline-none"
-              aria-label="Toggle menu"
+        <div className="hidden items-center gap-1 lg:flex">
+          {NAV.map(({ id, label }) => (
+            <a
+              key={id}
+              href={href(id)}
+              className={`border-2 px-2 py-0.5 font-term text-xl leading-tight transition-colors ${
+                active === id ? "border-ink bg-sun" : "border-transparent hover:border-ink hover:bg-paper-deep"
+              }`}
             >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16m-7 6h7"
-                />
-              </svg>
-            </button>
-          </div>
+              {label}
+            </a>
+          ))}
+          <a href={PROFILE.resumePdf} target="_blank" rel="noopener noreferrer" className="px-btn ml-2 bg-coral py-1.5 text-paper">
+            Resume
+          </a>
         </div>
+
+        <button
+          onClick={() => setOpen((o) => !o)}
+          className="px-chip bg-sun lg:hidden"
+          aria-label="Toggle menu"
+          aria-expanded={open}
+        >
+          {open ? "X CLOSE" : "≡ MENU"}
+        </button>
       </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="fixed inset-0 z-50 bg-gradient-to-br from-blue-800 via-white-800 to-black via-white-800 transition-transform transform translate-x-0 duration-300 ease-in-out lg:hidden">
-          <div className=" bg-gradient-to-br from-blue-800 via-white-800 to-black via-white-800 h-full p-10 flex flex-col space-y-12 shadow-lg">
-            <button
-              onClick={toggleMenu}
-              className="text-[#f9e243] focus:outline-none"
-              aria-label="Close menu"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-            <a
-              href="/"
-              className="hover:text-[#ffffff] transition-colors duration-300 text-2xl font-bold"
-              style={{ color: "#f9e243" }}
-            >
-              Home
-            </a>
-            <a
-              href="/blog"
-              className="hover:text-[#ffffff] transition-colors duration-300 text-2xl font-bold"
-              style={{ color: "#f9e243" }}
-            >
-              Blog
-            </a>
-            <a
-              href="/interests"
-              className="hover:text-[#ffffff] transition-colors duration-300 text-2xl font-bold"
-              style={{ color: "#f9e243" }}
-            >
-              Interests
-            </a>
-           
-          </div>
+      {open && (
+        <div className="border-t-4 border-ink bg-paper lg:hidden">
+          <ul className="mx-auto flex max-w-7xl flex-col px-4 py-3">
+            {NAV.map(({ id, label }, i) => (
+              <li key={id}>
+                <a
+                  href={href(id)}
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 py-2 font-term text-2xl hover:text-coral"
+                >
+                  <span className="text-ink-soft">{String(i + 1).padStart(2, "0")}</span> {label}
+                </a>
+              </li>
+            ))}
+            <li className="pt-2">
+              <a href={PROFILE.resumePdf} target="_blank" rel="noopener noreferrer" className="px-btn bg-coral text-paper">
+                ↓ Resume.pdf
+              </a>
+            </li>
+          </ul>
         </div>
       )}
     </nav>

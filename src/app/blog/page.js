@@ -1,43 +1,38 @@
 import Link from "next/link";
 import { getAllPosts } from "@/app/lib/getPosts";
-import HeroSection from "@/components/BlogHero"
+import { SectionHeader } from "@/components/pixel/Section";
 
+export const metadata = { title: "Build Logs · Bhawish Kumar" };
 
-export default async function Blog() {
-  const posts = getAllPosts(); // Fetch Markdown posts
+export default function Blog() {
+  const posts = getAllPosts().sort((a, b) => String(b.metadata.date).localeCompare(String(a.metadata.date)));
 
   return (
-    <div className="w-full min-h-screen">
-      <HeroSection/>
-     
-      <div className="max-w-4xl mx-auto mt-12 p-6 bg-white rounded-lg shadow-md">
-  <h2 className="text-5xl font-bold text-gray-900 mb-8 text-center">All Posts</h2>
-  <ol className="space-y-6">
-    {posts.map((post, index) => (
-      <li
-        key={post.slug}
-        className="p-6 bg-white rounded-lg shadow-md border border-gray-200 transition transform hover:scale-105"
-      >
-        <div className="flex items-start">
-          {/* Display the ordered number */}
-          <span className="text-xl font-bold text-gray-800 mr-3">{index + 1}.</span>
-          <div>
-            <h3 className="text-2xl font-semibold text-gray-800">
-              <Link
-                href={`/blog/${post.slug}`}
-                className="text-blue-600 hover:underline"
-              >
-                {post.metadata.title}
+    <div className="min-h-screen border-b-4 border-ink bg-azure-soft bg-dots">
+      <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
+        <SectionHeader
+          title="Build Logs"
+          subtitle="Step-by-step write-ups of how my projects were built, for juniors who learn best by seeing the process."
+          accent="bg-azure"
+        />
+        <ol className="space-y-6">
+          {posts.map((post, i) => (
+            <li key={post.slug}>
+              <Link href={`/blog/${post.slug}`} className="px-box px-lift flex gap-4 bg-paper p-5">
+                <span className="font-display text-lg text-coral">{String(i + 1).padStart(2, "0")}</span>
+                <div>
+                  <h2 className="text-2xl font-bold leading-tight">{post.metadata.title}</h2>
+                  <p className="font-term text-lg text-ink-soft">{post.metadata.date}</p>
+                  <p className="mt-2 text-lg leading-snug">{post.metadata.description}</p>
+                </div>
               </Link>
-            </h3>
-            <p className="text-gray-500 text-sm mt-1">{post.metadata.date}</p>
-            <p className="mt-3 text-gray-700">{post.metadata.description}</p>
-          </div>
-        </div>
-      </li>
-    ))}
-  </ol>
-</div>
+            </li>
+          ))}
+        </ol>
+        <Link href="/#juniors" className="px-btn mt-10 bg-paper">
+          ◀ Study notes
+        </Link>
+      </div>
     </div>
   );
 }
