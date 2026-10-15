@@ -15,9 +15,9 @@ export const PROFILE = {
   summary:
     "I'm a Computer Science undergraduate at Hong Kong Baptist University. I got into CS because I love games, and I stayed because of the problems behind them: how machines perceive the world, how systems talk to each other, and how software can be made for people. Right now my research is on vision-language perception and grounding across campus cameras (IEEE MetaCom 2026). Outside the lab I ship production software and run a student coding community.",
   interests: [
-    "Vision-language perception & spatial grounding",
-    "Multimodal reasoning with LLMs / VLMs",
-    "Simulation for embodied AI (NVIDIA Isaac Sim)",
+    "Virtual Reality & Augmented Reality",
+    "Multimodal Artificial Intelligence",
+    "Software design & development",
     "Distributed & cloud systems",
   ],
   stats: [
