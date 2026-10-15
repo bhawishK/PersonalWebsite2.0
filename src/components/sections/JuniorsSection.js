@@ -30,11 +30,11 @@ export default function JuniorsSection() {
         {notes.map((n, i) => (
           <li key={n.topic} className="px-box px-lift flex flex-col bg-paper">
             <div className={`flex items-center justify-between border-b-[3px] border-ink px-4 py-2 bg-${n.color}`}>
-              <span className="font-display text-[10px] uppercase">Step {i + 1}</span>
+              <span className="font-display text-base uppercase sm:text-lg">Step {i + 1}</span>
               <span className="font-term text-lg">{n.subject}</span>
             </div>
             <div className="flex flex-1 flex-col gap-3 p-5">
-              <h3 className="text-2xl font-bold leading-tight">{n.topic}</h3>
+              <h3 className="font-display text-2xl uppercase leading-relaxed sm:text-3xl">{n.topic}</h3>
               <Difficulty level={n.level} />
               <p className="text-lg leading-snug text-ink-soft">{n.summary}</p>
               <div className="mt-auto flex items-center justify-between pt-2">

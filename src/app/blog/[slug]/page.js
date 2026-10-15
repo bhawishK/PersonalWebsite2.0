@@ -20,11 +20,11 @@ export default async function BlogPost({ params }) {
         </Link>
         <article className="px-box mt-8 bg-paper">
           <header className="border-b-[3px] border-ink bg-sun px-6 py-5">
-            <h1 className="font-display text-base uppercase leading-relaxed sm:text-xl">{metadata.title}</h1>
+            <h1 className="font-display text-2xl uppercase leading-relaxed sm:text-3xl">{metadata.title}</h1>
             <p className="mt-2 font-term text-xl">{metadata.date}</p>
           </header>
           <div
-            className="prose prose-lg max-w-none px-6 py-8 prose-headings:font-display prose-headings:text-sm prose-headings:uppercase prose-headings:leading-relaxed prose-headings:text-ink prose-p:text-ink prose-li:text-ink prose-strong:text-ink"
+            className="prose prose-lg max-w-none px-6 py-8 prose-headings:font-display prose-headings:text-xl prose-headings:uppercase prose-headings:leading-relaxed prose-headings:text-ink sm:prose-headings:text-2xl prose-p:text-ink prose-li:text-ink prose-strong:text-ink"
             dangerouslySetInnerHTML={{ __html: processed.toString() }}
           />
         </article>

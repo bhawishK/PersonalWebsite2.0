@@ -7,7 +7,7 @@ export default function SkillsSection() {
       <div className="grid gap-6 md:grid-cols-2">
         {SKILLS.map((s) => (
           <div key={s.group} className="px-box bg-paper">
-            <h3 className={`border-b-[3px] border-ink px-4 py-2 font-display text-[10px] uppercase bg-${s.color}`}>
+            <h3 className={`border-b-[3px] border-ink px-4 py-3 font-display text-2xl uppercase leading-relaxed sm:text-3xl bg-${s.color}`}>
               {s.group}
             </h3>
             <ul className="grid grid-cols-2 gap-2 p-4 sm:grid-cols-3">

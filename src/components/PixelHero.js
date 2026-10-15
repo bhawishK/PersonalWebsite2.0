@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import BitmapText from "@/components/pixel/BitmapText";
 import Lightbox from "@/components/pixel/Lightbox";
 import { MEDIA } from "@/data/media";
@@ -244,9 +245,9 @@ export default function PixelHero() {
           </div>
           <p className="text-xl font-semibold leading-snug md:text-2xl">{PROFILE.headline}</p>
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <a href="#profile" className="px-btn bg-sun">
+            <Link href="/about" className="px-btn bg-sun">
               About me
-            </a>
+            </Link>
             <a href={PROFILE.resumePdf} target="_blank" rel="noopener noreferrer" className="px-btn bg-paper">
               Resume
             </a>

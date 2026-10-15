@@ -32,7 +32,9 @@ function ProjectTile({ project, feature, className }) {
           {project.metric && <span className="px-chip bg-sun text-sm">{project.metric}</span>}
           {feature && project.highlight && <span className="px-chip bg-grape-soft text-sm">{project.highlight}</span>}
         </div>
-        <h3 className={`mt-1 font-bold leading-tight ${feature ? "text-2xl" : "text-lg"}`}>{project.title}</h3>
+        <h3 className={`mt-1 font-display uppercase leading-relaxed ${feature ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"}`}>
+          {project.title}
+        </h3>
         <p className="font-term text-lg leading-tight text-ink-soft">{project.tech.join(" · ")}</p>
         <p className={`mt-1 text-base leading-snug ${feature ? "" : "line-clamp-2"}`}>{project.summary}</p>
       </div>

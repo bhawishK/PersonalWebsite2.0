@@ -15,7 +15,7 @@ export default function ExperienceSection() {
             <article className="px-box bg-paper">
               <header className={`flex flex-wrap items-center justify-between gap-2 border-b-[3px] border-ink px-5 py-3 bg-${job.color}-soft`}>
                 <div>
-                  <h3 className="text-2xl font-bold leading-tight">{job.role}</h3>
+                  <h3 className="font-display text-2xl uppercase leading-relaxed sm:text-3xl">{job.role}</h3>
                   <p className="text-lg leading-snug">{job.org}</p>
                 </div>
                 <div className="text-right font-term text-lg leading-tight">

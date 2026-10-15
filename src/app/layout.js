@@ -1,25 +1,21 @@
-import { Press_Start_2P, Pixelify_Sans, VT323 } from "next/font/google";
+import { Pixelify_Sans, Jersey_15 } from "next/font/google";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import NextSection from "@/components/NextSection";
 import "./globals.css";
 
-const pressStart = Press_Start_2P({
-  weight: "400",
+// Clearest pixel face for headings / display chrome.
+const pixelify = Pixelify_Sans({
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-press",
   display: "swap",
 });
 
-const pixelify = Pixelify_Sans({
-  subsets: ["latin"],
-  variable: "--font-pixelify",
-  display: "swap",
-});
-
-const vt323 = VT323({
+// Same face as the navbar — used for paragraphs, bullets, and labels.
+const jersey = Jersey_15({
   weight: "400",
   subsets: ["latin"],
-  variable: "--font-vt323",
+  variable: "--font-body",
   display: "swap",
 });
 
@@ -35,10 +31,10 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/logo.png" />
       </head>
-      <body className={`${pressStart.variable} ${pixelify.variable} ${vt323.variable} antialiased`}>
+      <body className={`${pixelify.variable} ${jersey.variable} antialiased`}>
         <Navbar />
         <main>{children}</main>
-        <Footer />
+        <NextSection />
       </body>
     </html>
   );

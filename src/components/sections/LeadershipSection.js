@@ -44,7 +44,7 @@ function LeadershipEntry({ entry, onOpen }) {
     <article className="px-box bg-paper">
       <header className={`flex flex-wrap items-center justify-between gap-3 border-b-[3px] border-ink px-5 py-4 bg-${entry.color}`}>
         <div>
-          <h3 className="font-display text-sm uppercase leading-relaxed sm:text-base">{entry.org}</h3>
+          <h3 className="font-display text-2xl uppercase leading-relaxed sm:text-3xl">{entry.org}</h3>
           <p className="text-lg leading-snug">{entry.role}</p>
         </div>
         <span className="px-chip bg-paper">{entry.dates}</span>
@@ -63,7 +63,7 @@ function LeadershipEntry({ entry, onOpen }) {
           <div className="grid h-fit grid-cols-2 gap-3">
             {stats.map((s) => (
               <div key={s.label} className={`px-box-sm p-3 text-center bg-${entry.color}-soft`}>
-                <p className="font-display text-lg leading-none">{s.value}</p>
+                <p className="font-display text-2xl leading-none sm:text-3xl">{s.value}</p>
                 <p className="mt-1.5 font-term text-lg leading-tight">{s.label}</p>
               </div>
             ))}
@@ -76,7 +76,7 @@ function LeadershipEntry({ entry, onOpen }) {
           <section key={it.title} className="grid gap-5 p-5 lg:grid-cols-[280px_1fr]">
             <div>
               <span className={`block h-2 w-16 border-2 border-ink bg-${it.color}`} aria-hidden />
-              <h4 className="mt-3 text-2xl font-bold leading-tight">{it.title}</h4>
+              <h4 className="mt-3 font-display text-2xl uppercase leading-relaxed sm:text-3xl">{it.title}</h4>
               <p className="mt-2 text-lg leading-snug text-ink-soft">{it.description}</p>
             </div>
             <Gallery images={it.images} onOpen={onOpen} />

@@ -18,7 +18,7 @@ export default function ProfileSection() {
             <Photo src={photo?.src} alt={photo?.alt} />
           </div>
           <div className="space-y-3 p-4">
-            <p className="font-display text-xs uppercase leading-relaxed">{PROFILE.name}</p>
+            <p className="font-display text-xl uppercase leading-relaxed sm:text-2xl">{PROFILE.name}</p>
             <p className="flex items-center gap-2 font-term text-lg leading-tight">
               <FiMapPin aria-label="Location" /> {PROFILE.location}
             </p>
@@ -47,7 +47,7 @@ export default function ProfileSection() {
           <p className="text-xl leading-relaxed">{PROFILE.summary}</p>
 
           <div className="px-box bg-grape-soft p-5">
-            <h3 className="font-display text-[11px] uppercase leading-relaxed">Research interests</h3>
+            <h3 className="font-display text-2xl uppercase leading-relaxed sm:text-3xl">Research interests</h3>
             <ul className="mt-3 grid gap-2 sm:grid-cols-2">
               {PROFILE.interests.map((it) => (
                 <li key={it} className="flex gap-2 text-lg leading-snug">
@@ -61,7 +61,7 @@ export default function ProfileSection() {
           <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
             {PROFILE.stats.map((s) => (
               <div key={s.label} className={`px-box-sm bg-${s.color} p-4 text-center`}>
-                <p className="font-display text-xl leading-none">{s.value}</p>
+                <p className="font-display text-2xl leading-none sm:text-3xl">{s.value}</p>
                 <p className="mt-2 font-term text-lg leading-tight">{s.label}</p>
               </div>
             ))}

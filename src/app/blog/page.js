@@ -21,7 +21,7 @@ export default function Blog() {
               <Link href={`/blog/${post.slug}`} className="px-box px-lift flex gap-4 bg-paper p-5">
                 <span className="font-display text-lg text-coral">{String(i + 1).padStart(2, "0")}</span>
                 <div>
-                  <h2 className="text-2xl font-bold leading-tight">{post.metadata.title}</h2>
+                  <h2 className="font-display text-xl uppercase leading-relaxed sm:text-2xl">{post.metadata.title}</h2>
                   <p className="font-term text-lg text-ink-soft">{post.metadata.date}</p>
                   <p className="mt-2 text-lg leading-snug">{post.metadata.description}</p>
                 </div>
@@ -29,7 +29,7 @@ export default function Blog() {
             </li>
           ))}
         </ol>
-        <Link href="/#juniors" className="px-btn mt-10 bg-paper">
+        <Link href="/juniors" className="px-btn mt-10 bg-paper">
           ◀ Study notes
         </Link>
       </div>

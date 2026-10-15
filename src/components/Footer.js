@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer id="contact" className="bg-grape text-paper">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-4 py-16 text-center sm:px-6">
-        <h2 className="font-display text-lg uppercase leading-relaxed sm:text-2xl">Get in touch</h2>
+        <h2 className="font-display text-3xl uppercase leading-relaxed sm:text-4xl">Get in touch</h2>
         <p className="max-w-xl text-lg leading-snug">
           Open to research collaborations, internships, and helping juniors get started.
         </p>

@@ -16,7 +16,7 @@ export default function AchievementsSection() {
                 <span className={`px-chip absolute left-2 top-2 bg-${a.color}`}>{a.date}</span>
               </div>
               <div className="space-y-2 p-5">
-                <h3 className="text-xl font-bold leading-tight">{a.title}</h3>
+                <h3 className="font-display text-xl uppercase leading-relaxed sm:text-2xl">{a.title}</h3>
                 {a.where && <p className="font-term text-lg leading-tight text-ink-soft">{a.where}</p>}
                 <p className="text-base leading-snug">{a.description}</p>
               </div>

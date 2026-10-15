@@ -11,10 +11,12 @@ export default function InspirationSection() {
           className="h-40 w-40 shrink-0 border-[3px] border-ink object-cover shadow-px-sm"
         />
         <div>
-          <p className="font-display text-[10px] uppercase text-grape">My inspiration</p>
-          <blockquote className="mt-3 text-2xl leading-snug md:text-3xl">“{INSPIRATION.text}”</blockquote>
+          <p className="font-display text-base uppercase leading-relaxed text-grape sm:text-lg">My inspiration</p>
+          <blockquote className="mt-3 font-display text-xl uppercase leading-relaxed sm:text-2xl md:text-3xl">
+            “{INSPIRATION.text}”
+          </blockquote>
           <figcaption className="mt-3 text-lg">
-            <span className="font-semibold">{INSPIRATION.name}</span>
+            <span className="font-display text-lg uppercase sm:text-xl">{INSPIRATION.name}</span>
             <span className="font-term text-xl text-ink-soft"> · {INSPIRATION.note}</span>
           </figcaption>
         </div>

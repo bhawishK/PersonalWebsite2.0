@@ -26,9 +26,9 @@ export default {
         bubble: { DEFAULT: "#FF5CA8", soft: "#FFE0EF" },
       },
       fontFamily: {
-        display: ["var(--font-press)", "monospace"],
-        pixel: ["var(--font-pixelify)", "system-ui", "sans-serif"],
-        term: ["var(--font-vt323)", "monospace"],
+        display: ["var(--font-press)", "system-ui", "sans-serif"],
+        pixel: ["var(--font-body)", "system-ui", "sans-serif"],
+        term: ["var(--font-body)", "system-ui", "sans-serif"],
       },
       boxShadow: {
         px: "6px 6px 0 0 #1D1A2F",

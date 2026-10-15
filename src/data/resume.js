@@ -381,11 +381,11 @@ export const INSPIRATION = {
 };
 
 export const NAV = [
-  { id: "profile", label: "About" },
-  { id: "education", label: "Education" },
-  { id: "research", label: "Research" },
-  { id: "experience", label: "Experience" },
-  { id: "projects", label: "Projects" },
-  { id: "leadership", label: "Leadership" },
-  { id: "juniors", label: "For Juniors" },
+  { href: "/about", label: "About" },
+  { href: "/experience", label: "Experience" },
+  { href: "/projects", label: "Projects" },
+  { href: "/achievements", label: "Achievements" },
+  { href: "/leadership", label: "Leadership" },
+  { href: "/skills", label: "Skills" },
+  { href: "/juniors", label: "For Juniors" },
 ];

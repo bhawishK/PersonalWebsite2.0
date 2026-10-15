@@ -14,7 +14,13 @@ html {
 body {
   color: var(--ink);
   background: var(--paper);
-  font-family: var(--font-pixelify), system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+/* Pixelify caps read lighter than Jersey at the same px — bold + tracking for hierarchy. */
+.font-display {
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 ::selection {
@@ -30,7 +36,7 @@ body {
     @apply border-2 border-ink shadow-px-sm;
   }
   .px-btn {
-    @apply inline-flex items-center gap-2 border-[3px] border-ink px-4 py-2 font-display text-[10px] uppercase leading-none shadow-px-sm transition-transform duration-75 sm:text-xs;
+    @apply inline-flex items-center gap-2 border-[3px] border-ink px-4 py-2 font-display text-xs uppercase leading-none shadow-px-sm transition-transform duration-75 sm:text-sm;
   }
   .px-btn:hover {
     transform: translate(-2px, -2px);

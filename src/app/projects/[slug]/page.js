@@ -43,7 +43,7 @@ export default async function ProjectPage({ params }) {
           <div className="mx-auto max-w-5xl px-4 pb-6 sm:px-6">
             <div className="px-box inline-block max-w-3xl bg-paper p-5">
               <span className={`px-chip bg-${project.color}`}>{project.category}</span>
-              <h1 className="mt-3 font-display text-base uppercase leading-relaxed sm:text-xl">{project.title}</h1>
+              <h1 className="mt-3 font-display text-2xl uppercase leading-relaxed sm:text-3xl md:text-4xl">{project.title}</h1>
               <p className="mt-1 font-term text-xl leading-tight text-ink-soft">{project.tech.join(" · ")}</p>
             </div>
           </div>
@@ -51,7 +51,7 @@ export default async function ProjectPage({ params }) {
       </div>
 
       <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 md:py-14">
-        <Link href="/#projects" className="px-chip bg-paper">
+        <Link href="/projects" className="px-chip bg-paper">
           ◀ All projects
         </Link>
 
@@ -78,7 +78,7 @@ export default async function ProjectPage({ params }) {
           <aside className="space-y-4">
             {(project.metric || project.highlight) && (
               <div className={`px-box space-y-2 p-4 bg-${project.color}-soft`}>
-                {project.metric && <p className="font-display text-sm leading-relaxed">{project.metric}</p>}
+                {project.metric && <p className="font-display text-lg uppercase leading-relaxed sm:text-xl">{project.metric}</p>}
                 {project.highlight && <p className="text-lg leading-snug">{project.highlight}</p>}
               </div>
             )}
@@ -101,7 +101,7 @@ export default async function ProjectPage({ params }) {
 
         {gallery.length > 0 && (
           <section className="mt-14">
-            <h2 className="font-display text-xs uppercase">Gallery</h2>
+            <h2 className="font-display text-2xl uppercase leading-relaxed sm:text-3xl">Gallery</h2>
             <div className="mt-5 grid auto-rows-[220px] gap-4 sm:grid-cols-2 sm:auto-rows-[260px]">
               {gallery.map((g, i) => (
                 <figure

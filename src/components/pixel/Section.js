@@ -1,9 +1,9 @@
 export function SectionHeader({ title, subtitle, accent = "bg-sun" }) {
   return (
     <header className="mb-10 md:mb-14">
-      <h2 className="font-display text-xl uppercase leading-relaxed sm:text-2xl md:text-3xl">{title}</h2>
+      <h2 className="font-display text-3xl uppercase leading-relaxed sm:text-4xl md:text-5xl">{title}</h2>
       <div className={`mt-3 h-2 w-24 border-2 border-ink ${accent}`} aria-hidden />
-      {subtitle && <p className="mt-4 max-w-2xl text-lg leading-snug text-ink-soft">{subtitle}</p>}
+      {subtitle && <p className="mt-4 max-w-2xl text-lg leading-snug text-ink-soft sm:text-xl">{subtitle}</p>}
     </header>
   );
 }
