@@ -44,6 +44,7 @@ export const EDUCATION = [
       "Outstanding Student Performance Award",
       "Undergraduate Scholarship",
     ],
+    kind: "Degree",
     color: "azure",
   },
   {
@@ -54,7 +55,17 @@ export const EDUCATION = [
     gpa: "3.60",
     dates: "Feb 2025 – Jun 2025",
     honors: [],
+    kind: "Exchange",
     color: "mint",
+  },
+  {
+    school: "London School of Economics (LSE Generate)",
+    location: "London, UK",
+    degree: "Entrepreneurship Bootcamp",
+    dates: "Jun 2026",
+    honors: ["Best Pitch Award"],
+    kind: "Bootcamp",
+    color: "coral",
   },
 ];
 
@@ -239,11 +250,12 @@ export const ACHIEVEMENTS = [
 ];
 
 // Each initiative can hold as many images as needed: { media, caption }
-export const LEADERSHIP = {
-  featured: {
+export const LEADERSHIP = [
+  {
     org: "HKBU Coding Club",
     role: "Founder & President",
     dates: "Jul 2025 – Jun 2026",
+    color: "bubble",
     bullets: [
       "Organized HKBU's first student-led hackathon, leading a team of 8 executive members across partnerships, branding, finance, and operations.",
       "Launched 11 technical workshops for 100+ participants from non-technical backgrounds.",
@@ -289,19 +301,53 @@ export const LEADERSHIP = {
       },
     ],
   },
-  others: [
-    {
-      org: "Harvard World Model United Nations",
-      role: "Delegate, DISEC Committee · Hong Kong Baptist University",
-      dates: "Mar 2025",
-      bullets: [
-        "Examined the socio-political challenges of mining practices in the Democratic Republic of Congo and presented technology-related policy solutions.",
-      ],
-      media: "munSpeech",
-      color: "grape",
-    },
-  ],
-};
+  {
+    org: "Harvard World Model United Nations",
+    role: "Delegate, DISEC Committee · Hong Kong Baptist University",
+    dates: "Mar 2025",
+    color: "grape",
+    bullets: [
+      "Examined the socio-political challenges of mining practices in the Democratic Republic of Congo and presented technology-related policy solutions.",
+    ],
+    stats: [
+      { label: "Committee", value: "DISEC" },
+      { label: "Delegation", value: "HKBU" },
+    ],
+    initiatives: [
+      {
+        title: "In Committee",
+        description:
+          "Debating disarmament and international security alongside delegates from universities around the world.",
+        color: "grape",
+        images: [
+          { media: "munSpeech", caption: "Speaking in committee" },
+          { media: "stage", caption: "Moderated caucus" },
+          { media: "munNotes", caption: "Working papers" },
+        ],
+      },
+      {
+        title: "Policy Research",
+        description:
+          "Researching mining practices in the Democratic Republic of Congo and drafting technology-related policy solutions.",
+        color: "azure",
+        images: [
+          { media: "munNotes", caption: "Drafting resolutions" },
+          { media: "lateNight", caption: "Late-night research" },
+        ],
+      },
+      {
+        title: "The Delegation",
+        description: "Representing Hong Kong Baptist University on the international stage.",
+        color: "coral",
+        images: [
+          { media: "travelLake", caption: "Delegation trip" },
+          { media: "reflection", caption: "Between sessions" },
+          { media: "cycling", caption: "Exploring the city" },
+        ],
+      },
+    ],
+  },
+];
 
 export const SKILLS = [
   {
@@ -324,17 +370,6 @@ export const SKILLS = [
     items: ["English", "Urdu", "Hindi", "Sindhi"],
     color: "sun",
   },
-];
-
-export const CERTIFICATIONS = [
-  "Master Spring Boot Microservice & Angular K8s CICD AWS",
-  "Learning Kubernetes",
-  "Spring Cloud: Cloud-Native Architecture and Distributed Systems",
-  "Spring Security",
-  "OSS Fundamentals",
-  "Introduction to C Plus Plus",
-  "Using Python to Access Web Data",
-  "Python for Everybody Specialization",
 ];
 
 export const STUDY_NOTES = [

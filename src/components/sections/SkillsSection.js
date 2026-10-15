@@ -1,5 +1,5 @@
 import Section from "@/components/pixel/Section";
-import { CERTIFICATIONS, SKILLS } from "@/data/resume";
+import { SKILLS } from "@/data/resume";
 
 export default function SkillsSection() {
   return (
@@ -19,18 +19,6 @@ export default function SkillsSection() {
             </ul>
           </div>
         ))}
-      </div>
-
-      <div className="px-box mt-8 bg-paper-deep p-5">
-        <h3 className="font-display text-[10px] uppercase">Certifications</h3>
-        <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-          {CERTIFICATIONS.map((c) => (
-            <li key={c} className="flex gap-2 text-base leading-snug">
-              <span className="text-leaf [text-shadow:1px_1px_0_#1D1A2F]">✔</span>
-              {c}
-            </li>
-          ))}
-        </ul>
       </div>
     </Section>
   );

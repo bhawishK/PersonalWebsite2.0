@@ -214,10 +214,10 @@ export default function PixelHero() {
           ref={panelRef}
           className="px-box absolute left-1/2 top-1/2 z-40 flex w-[min(620px,calc(100%-24px))] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-4 bg-paper px-5 py-7 text-center md:px-10 md:py-9"
         >
-          <BitmapText text="Bhawish Kumar" shadowColor="#FFD23F" className="hidden w-full max-w-[520px] md:block" />
+          <BitmapText text="Bhawish Kumar" className="hidden w-full max-w-[520px] md:block" />
           <div className="flex w-full flex-col items-center gap-2 md:hidden">
-            <BitmapText text="Bhawish" shadowColor="#FFD23F" className="w-[72%]" title="Bhawish Kumar" />
-            <BitmapText text="Kumar" shadowColor="#FFD23F" className="w-[52%]" title="" />
+            <BitmapText text="Bhawish" className="w-[72%]" title="Bhawish Kumar" />
+            <BitmapText text="Kumar" className="w-[52%]" title="" />
           </div>
           <div className="space-y-1">
             <p className="text-xl font-semibold leading-snug md:text-2xl">{PROFILE.headline}</p>

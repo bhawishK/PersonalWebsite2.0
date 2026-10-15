@@ -37,100 +37,85 @@ function Gallery({ images, onOpen }) {
   );
 }
 
-export default function LeadershipSection() {
-  const { featured, others } = LEADERSHIP;
-  const [open, setOpen] = useState(null);
-
-  const { initiatives, flat } = useMemo(() => {
-    const flat = [];
-    const initiatives = featured.initiatives.map((it) => ({
-      ...it,
-      images: it.images
-        .map(({ media, caption }) => {
-          const m = MEDIA[media];
-          if (!m) return null;
-          const entry = { src: m.src, alt: m.alt, caption: caption ?? m.caption, flatIndex: flat.length };
-          flat.push(entry);
-          return entry;
-        })
-        .filter(Boolean),
-    }));
-    return { initiatives, flat };
-  }, [featured.initiatives]);
-
+function LeadershipEntry({ entry, onOpen }) {
+  const stats = entry.stats ?? [];
   return (
-    <Section
-      id="leadership"
-      title="Leadership Experience"
-      accent="bg-bubble"
-      className="bg-bubble-soft bg-dots"
-    >
-      <article className="px-box bg-paper">
-        <header className="flex flex-wrap items-center justify-between gap-3 border-b-[3px] border-ink bg-bubble px-5 py-4">
-          <div>
-            <h3 className="font-display text-sm uppercase leading-relaxed sm:text-base">{featured.org}</h3>
-            <p className="text-lg leading-snug">{featured.role}</p>
-          </div>
-          <span className="px-chip bg-paper">{featured.dates}</span>
-        </header>
+    <article className="px-box bg-paper">
+      <header className={`flex flex-wrap items-center justify-between gap-3 border-b-[3px] border-ink px-5 py-4 bg-${entry.color}`}>
+        <div>
+          <h3 className="font-display text-sm uppercase leading-relaxed sm:text-base">{entry.org}</h3>
+          <p className="text-lg leading-snug">{entry.role}</p>
+        </div>
+        <span className="px-chip bg-paper">{entry.dates}</span>
+      </header>
 
-        <div className="grid gap-6 border-b-[3px] border-ink p-5 lg:grid-cols-[1.3fr_1fr]">
-          <ul className="space-y-2">
-            {featured.bullets.map((b) => (
-              <li key={b} className="flex gap-3 text-lg leading-snug">
-                <span className="mt-2 h-2 w-2 shrink-0 bg-ink" aria-hidden />
-                {b}
-              </li>
-            ))}
-          </ul>
-          <div className="grid grid-cols-2 gap-3">
-            {featured.stats.map((s) => (
-              <div key={s.label} className="px-box-sm bg-sun-soft p-3 text-center">
+      <div className={`grid gap-6 border-b-[3px] border-ink p-5 ${stats.length ? "lg:grid-cols-[1.3fr_1fr]" : ""}`}>
+        <ul className="space-y-2">
+          {entry.bullets.map((b) => (
+            <li key={b} className="flex gap-3 text-lg leading-snug">
+              <span className="mt-2 h-2 w-2 shrink-0 bg-ink" aria-hidden />
+              {b}
+            </li>
+          ))}
+        </ul>
+        {stats.length > 0 && (
+          <div className="grid h-fit grid-cols-2 gap-3">
+            {stats.map((s) => (
+              <div key={s.label} className={`px-box-sm p-3 text-center bg-${entry.color}-soft`}>
                 <p className="font-display text-lg leading-none">{s.value}</p>
                 <p className="mt-1.5 font-term text-lg leading-tight">{s.label}</p>
               </div>
             ))}
           </div>
-        </div>
-
-        <div className="divide-y-[3px] divide-ink">
-          {initiatives.map((it, i) => (
-            <section key={it.title} className="grid gap-5 p-5 lg:grid-cols-[280px_1fr]">
-              <div>
-                <span className={`block h-2 w-16 border-2 border-ink bg-${it.color}`} aria-hidden />
-                <h4 className="mt-3 text-2xl font-bold leading-tight">{it.title}</h4>
-                <p className="mt-2 text-lg leading-snug text-ink-soft">{it.description}</p>
-              </div>
-              <Gallery images={it.images} onOpen={setOpen} />
-            </section>
-          ))}
-        </div>
-      </article>
-
-      <h3 className="mb-5 mt-14 font-display text-xs uppercase">Other activities</h3>
-      <div className="grid gap-6 md:grid-cols-2">
-        {others.map((o) => {
-          const img = MEDIA[o.media];
-          return (
-            <article key={o.org} className="px-box grid bg-paper sm:grid-cols-[160px_1fr]">
-              <div className="h-48 border-b-[3px] border-ink sm:h-auto sm:border-b-0 sm:border-r-[3px]">
-                <Photo src={img?.src} alt={img?.alt} />
-              </div>
-              <div className="space-y-2 p-4">
-                <span className={`px-chip bg-${o.color}-soft`}>{o.dates}</span>
-                <h4 className="text-xl font-bold leading-tight">{o.org}</h4>
-                <p className="font-term text-lg leading-tight text-ink-soft">{o.role}</p>
-                {o.bullets.map((b) => (
-                  <p key={b} className="text-base leading-snug">
-                    {b}
-                  </p>
-                ))}
-              </div>
-            </article>
-          );
-        })}
+        )}
       </div>
 
+      <div className="divide-y-[3px] divide-ink">
+        {entry.initiatives.map((it) => (
+          <section key={it.title} className="grid gap-5 p-5 lg:grid-cols-[280px_1fr]">
+            <div>
+              <span className={`block h-2 w-16 border-2 border-ink bg-${it.color}`} aria-hidden />
+              <h4 className="mt-3 text-2xl font-bold leading-tight">{it.title}</h4>
+              <p className="mt-2 text-lg leading-snug text-ink-soft">{it.description}</p>
+            </div>
+            <Gallery images={it.images} onOpen={onOpen} />
+          </section>
+        ))}
+      </div>
+    </article>
+  );
+}
+
+export default function LeadershipSection() {
+  const [open, setOpen] = useState(null);
+
+  const { entries, flat } = useMemo(() => {
+    const flat = [];
+    const entries = LEADERSHIP.map((entry) => ({
+      ...entry,
+      initiatives: entry.initiatives.map((it) => ({
+        ...it,
+        images: it.images
+          .map(({ media, caption }) => {
+            const m = MEDIA[media];
+            if (!m) return null;
+            const item = { src: m.src, alt: m.alt, caption: caption ?? m.caption, flatIndex: flat.length };
+            flat.push(item);
+            return item;
+          })
+          .filter(Boolean),
+      })),
+    }));
+    return { entries, flat };
+  }, []);
+
+  return (
+    <Section id="leadership" title="Leadership Experience" accent="bg-bubble" className="bg-bubble-soft bg-dots">
+      <div className="space-y-12">
+        {entries.map((entry) => (
+          <LeadershipEntry key={entry.org} entry={entry} onOpen={setOpen} />
+        ))}
+      </div>
       <Lightbox items={flat} index={open} onClose={() => setOpen(null)} onChange={setOpen} />
     </Section>
   );
