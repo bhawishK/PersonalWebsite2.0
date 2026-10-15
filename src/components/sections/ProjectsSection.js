@@ -16,11 +16,15 @@ function ProjectTile({ project, feature, className }) {
       href={`/projects/${project.slug}`}
       className={`px-box px-lift group relative block overflow-hidden bg-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-sun ${className}`}
     >
-      <Photo src={cover?.src} alt={cover?.alt ?? project.title} />
+      <Photo src={cover?.src} alt={cover?.alt ?? project.title} fit="contain" sizes="(min-width: 1024px) 40vw, 100vw" />
 
       <div className="absolute left-3 right-3 top-3 flex flex-wrap items-start justify-between gap-2">
         <span className={`px-chip bg-${project.color}`}>{project.category}</span>
-        {photoCount > 0 && <span className="px-chip bg-paper">{photoCount} photos</span>}
+        {photoCount > 0 && (
+          <span className="px-chip bg-paper">
+            {photoCount} {photoCount === 1 ? "photo" : "photos"}
+          </span>
+        )}
       </div>
 
       <div className="absolute inset-x-0 bottom-0 border-t-[3px] border-ink bg-paper p-4">

@@ -1,5 +1,6 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 import BitmapText from "@/components/pixel/BitmapText";
 import Lightbox from "@/components/pixel/Lightbox";
 import { MEDIA } from "@/data/media";
@@ -66,31 +67,54 @@ export default function PixelHero() {
     };
 
     const grow = size * (PHOTO_ZOOM - 1);
-    const out = [];
-    let cursor = 0;
+    // Collect eligible slots first, then place each photo at most once.
+    const slots = [];
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
         const x = offX + c * step;
         const y = offY + r * step;
         if (x < keepOut.x1 && x + size > keepOut.x0 && y < keepOut.y1 && y + size > keepOut.y0) continue;
         const seed = r * 131 + c * 7;
-        const isColor = !photos.length || rand(seed) < HERO_COLOR_SHARE;
-        // Grow away from the name panel when the cell sits beside it.
         const inPanelCols = x + size > keepOut.x0 - grow && x < keepOut.x1 + grow;
         const inPanelRows = y + size > keepOut.y0 - grow && y < keepOut.y1 + grow;
         const preferY = inPanelCols && y + size <= keepOut.y0 ? 100 : inPanelCols && y >= keepOut.y1 ? 0 : 50;
         const preferX = inPanelRows && x + size <= keepOut.x0 ? 100 : inPanelRows && x >= keepOut.x1 ? 0 : 50;
-        out.push({
+        slots.push({
           x,
           y,
           size,
-          photo: isColor ? null : (cursor++ + r * 3) % photos.length,
-          color: COLORS[Math.floor(rand(seed + 999) * COLORS.length)],
+          seed,
           ox: pickOrigin(x, size, W, grow, preferX),
           oy: pickOrigin(y, size, H, grow, preferY),
         });
       }
     }
+
+    // Stable shuffle so photo placement is spread out, then assign unique indices.
+    const order = slots.map((_, i) => i).sort((a, b) => rand(slots[a].seed + 42) - rand(slots[b].seed + 42));
+    const photoAt = new Map();
+    let placed = 0;
+    for (const idx of order) {
+      if (placed >= photos.length) break;
+      if (rand(slots[idx].seed) < HERO_COLOR_SHARE) continue;
+      photoAt.set(idx, placed++);
+    }
+    // If color-share skipped too many, fill remaining photos into leftover slots.
+    for (const idx of order) {
+      if (placed >= photos.length) break;
+      if (photoAt.has(idx)) continue;
+      photoAt.set(idx, placed++);
+    }
+
+    const out = slots.map((s, i) => ({
+      x: s.x,
+      y: s.y,
+      size: s.size,
+      photo: photoAt.has(i) ? photoAt.get(i) : null,
+      color: COLORS[Math.floor(rand(s.seed + 999) * COLORS.length)],
+      ox: s.ox,
+      oy: s.oy,
+    }));
     cellsRef.current = out;
     nodeRefs.current = [];
     setActive(null);
@@ -187,8 +211,7 @@ export default function PixelHero() {
               className="hero-bit absolute overflow-hidden border-2 border-ink bg-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-sun"
               aria-label={photo.caption}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={photo.src} alt="" className="h-full w-full object-cover" draggable={false} />
+              <Image src={photo.src} alt="" fill sizes="220px" className="object-cover" draggable={false} />
             </button>
           ) : (
             <div
@@ -219,10 +242,7 @@ export default function PixelHero() {
             <BitmapText text="Bhawish" className="w-[72%]" title="Bhawish Kumar" />
             <BitmapText text="Kumar" className="w-[52%]" title="" />
           </div>
-          <div className="space-y-1">
-            <p className="text-xl font-semibold leading-snug md:text-2xl">{PROFILE.headline}</p>
-            <p className="font-term text-xl leading-tight text-ink-soft">{PROFILE.roles.join(" · ")}</p>
-          </div>
+          <p className="text-xl font-semibold leading-snug md:text-2xl">{PROFILE.headline}</p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <a href="#profile" className="px-btn bg-sun">
               About me

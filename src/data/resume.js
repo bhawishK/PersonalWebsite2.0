@@ -4,7 +4,6 @@
 export const PROFILE = {
   name: "Bhawish Kumar",
   headline: "Computer Science @ HKBU",
-  roles: ["Researcher", "Builder", "Community Lead"],
   location: "Hong Kong SAR",
   email: "bhawishkumar000@gmail.com",
   github: "https://github.com/bhawishK",
@@ -151,9 +150,9 @@ export const PROJECTS = [
     summary: "Turning everyday language into precise locations across a network of campus cameras.",
     metric: "95.6% accuracy",
     highlight: "IEEE MetaCom 2026 · To appear",
-    cover: "lateNight",
+    cover: "cameraPerception",
     details: [],
-    gallery: [{ media: "lateNight" }, { media: "stage" }, { media: "munNotes" }],
+    gallery: [],
     links: {},
     color: "grape",
   },
@@ -167,9 +166,9 @@ export const PROJECTS = [
       "Created design patterns like Strategy and State, enabling interaction & gameplay strategies within the engine.",
     ],
     summary: "A game engine whose rules and mechanics are built on Strategy and State patterns.",
-    cover: "munNotes",
+    cover: "threeKingdoms",
     details: [],
-    gallery: [{ media: "munNotes" }, { media: "lateNight" }],
+    gallery: [],
     links: {},
     color: "coral",
   },
@@ -183,9 +182,9 @@ export const PROJECTS = [
       "Designed & implemented Python GUI client enabling user friendly experience & navigation.",
     ],
     summary: "Real-time and group messaging over a multithreaded, encrypted C++ server with a PyQt5 client.",
-    cover: "uniFinder",
+    cover: "chatServer",
     details: [],
-    gallery: [{ media: "uniFinder" }, { media: "lateNight" }],
+    gallery: [],
     links: {},
     color: "azure",
   },
@@ -198,9 +197,9 @@ export const PROJECTS = [
       "Microservices-based food delivery system with authentication, order tracking, restaurant management & deployment.",
     ],
     summary: "Spring Boot microservices for authentication, order tracking and restaurant management.",
-    cover: "hkbumunSite",
+    cover: "foodDelivery",
     details: [],
-    gallery: [{ media: "hkbumunSite" }, { media: "foodbites" }],
+    gallery: [],
     links: { github: "https://github.com/BhawishKumarLohana/CloudKitchen" },
     color: "tangerine",
   },
@@ -213,9 +212,9 @@ export const PROJECTS = [
       "Collaborated on interactive Raspberry Pi installation program that challenges people to identify their own writing among nine lines of locally generated AI text.",
     ],
     summary: "An interactive installation: can you spot your own writing among nine lines of AI text?",
-    cover: "cycling",
+    cover: "keystrokePi",
     details: [],
-    gallery: [{ media: "cycling" }, { media: "reflection" }],
+    gallery: [],
     links: {},
     color: "mint",
   },
@@ -228,7 +227,7 @@ export const ACHIEVEMENTS = [
     date: "June 2026",
     description:
       "Developed blockchain-based invoice financing, supporting invoice verification, tokenization, and smart-contract integration to connect SMEs with investors.",
-    media: "stage",
+    media: "lse",
     color: "sun",
   },
   {
@@ -236,7 +235,7 @@ export const ACHIEVEMENTS = [
     date: "Sept 2026",
     description:
       "Won prototype funding for ArtDeck Kit, a cyberdeck for interactive media art combining hardware & software.",
-    media: "lateNight",
+    media: "yceAward",
     color: "bubble",
   },
   {
@@ -244,7 +243,7 @@ export const ACHIEVEMENTS = [
     date: "April 2026",
     description:
       "Won merit recognition for building a food redistribution platform aligned with UN SDG 2: Zero Hunger.",
-    media: "foodbites",
+    media: "samsungAward",
     color: "leaf",
   },
 ];
@@ -268,15 +267,11 @@ export const LEADERSHIP = [
     ],
     initiatives: [
       {
-        title: "HKBU's First Student-Led Hackathon",
+        title: "BUHack: HKBU's First Student-Led Hackathon",
         description:
           "From zero to a full hackathon: partnerships, branding, finance and operations run by an 8-person executive team.",
         color: "coral",
-        images: [
-          { media: "stage", caption: "Opening ceremony" },
-          { media: "munNotes", caption: "Judging" },
-          { media: "lateNight", caption: "Hacking through the night" },
-        ],
+        images: [{ media: "buhackClosing", caption: "BUHack closing ceremony" }],
       },
       {
         title: "Technical Workshop Series",
@@ -284,65 +279,32 @@ export const LEADERSHIP = [
           "11 hands-on workshops that took 100+ participants from non-technical backgrounds to their first working project.",
         color: "azure",
         images: [
-          { media: "munSpeech", caption: "Workshop session" },
-          { media: "hkbumunSite", caption: "Building for the web" },
-          { media: "uniFinder", caption: "APIs & maps" },
-        ],
-      },
-      {
-        title: "Building the Club",
-        description:
-          "Founding the club, recruiting the executive team, and growing a community of students who want to build.",
-        color: "mint",
-        images: [
-          { media: "reflection", caption: "Where it started" },
-          { media: "cycling", caption: "Team outings" },
+          { media: "workshopHtmlCss", caption: "Session 1 · HTML & CSS" },
+          { media: "workshopBootstrap", caption: "Session 2 · Bootstrap & Gen-AI" },
+          { media: "workshopJs1", caption: "Session 3 · JS Essentials 1" },
+          { media: "workshopJs2", caption: "Session 4 · JS Essentials 2" },
         ],
       },
     ],
   },
   {
     org: "Harvard World Model United Nations",
-    role: "Delegate, DISEC Committee · Hong Kong Baptist University",
-    dates: "Mar 2025",
+    role: "Delegate · Hong Kong Baptist University",
+    dates: "2024 – 2025",
     color: "grape",
     bullets: [
       "Examined the socio-political challenges of mining practices in the Democratic Republic of Congo and presented technology-related policy solutions.",
     ],
-    stats: [
-      { label: "Committee", value: "DISEC" },
-      { label: "Delegation", value: "HKBU" },
-    ],
     initiatives: [
       {
-        title: "In Committee",
-        description:
-          "Debating disarmament and international security alongside delegates from universities around the world.",
+        title: "Harvard WMUN",
+        description: "Representing HKBU on the international stage.",
         color: "grape",
         images: [
-          { media: "munSpeech", caption: "Speaking in committee" },
-          { media: "stage", caption: "Moderated caucus" },
-          { media: "munNotes", caption: "Working papers" },
-        ],
-      },
-      {
-        title: "Policy Research",
-        description:
-          "Researching mining practices in the Democratic Republic of Congo and drafting technology-related policy solutions.",
-        color: "azure",
-        images: [
-          { media: "munNotes", caption: "Drafting resolutions" },
-          { media: "lateNight", caption: "Late-night research" },
-        ],
-      },
-      {
-        title: "The Delegation",
-        description: "Representing Hong Kong Baptist University on the international stage.",
-        color: "coral",
-        images: [
-          { media: "travelLake", caption: "Delegation trip" },
-          { media: "reflection", caption: "Between sessions" },
-          { media: "cycling", caption: "Exploring the city" },
+          { media: "hwmunManilaSpeech", caption: "Speaking in committee" },
+          { media: "hwmunManilaCollab", caption: "Collaborating with delegates" },
+          { media: "hwmunTaipei", caption: "HWMUN" },
+          { media: "hwmunTaipeiGroup", caption: "With the delegation" },
         ],
       },
     ],

@@ -15,6 +15,7 @@ function spanFor(i, n) {
 }
 
 function Gallery({ images, onOpen }) {
+  if (!images.length) return null;
   return (
     <div className="grid auto-rows-[140px] grid-cols-2 gap-3 sm:auto-rows-[150px] sm:grid-cols-4">
       {images.map((img, i) => (
@@ -27,7 +28,7 @@ function Gallery({ images, onOpen }) {
           )}`}
           aria-label={`Open image: ${img.caption}`}
         >
-          <Photo src={img.src} alt={img.alt} />
+          <Photo src={img.src} alt={img.alt} fit="contain" />
           <span className="pointer-events-none absolute inset-x-0 bottom-0 border-t-[3px] border-ink bg-paper px-2 py-0.5 text-left font-term text-lg leading-tight">
             {img.caption}
           </span>
@@ -95,7 +96,7 @@ export default function LeadershipSection() {
       ...entry,
       initiatives: entry.initiatives.map((it) => ({
         ...it,
-        images: it.images
+        images: (it.images ?? [])
           .map(({ media, caption }) => {
             const m = MEDIA[media];
             if (!m) return null;

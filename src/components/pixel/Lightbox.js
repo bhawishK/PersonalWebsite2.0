@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import Image from "next/image";
 
 // items: [{ src, alt, caption }]
 export default function Lightbox({ items, index, onClose, onChange }) {
@@ -41,8 +42,9 @@ export default function Lightbox({ items, index, onClose, onChange }) {
             X
           </button>
         </div>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={item.src} alt={item.alt} className="max-h-[70vh] w-full bg-ink object-contain" />
+        <div className="relative h-[70vh] w-full bg-ink">
+          <Image src={item.src} alt={item.alt} fill sizes="(min-width: 896px) 896px, 100vw" className="object-contain" />
+        </div>
         <figcaption className="flex items-center justify-between gap-3 border-t-[3px] border-ink px-3 py-2">
           <button
             onClick={() => onChange((index - 1 + items.length) % items.length)}

@@ -38,7 +38,7 @@ export default async function ProjectPage({ params }) {
   return (
     <article className="min-h-screen border-b-4 border-ink bg-paper">
       <div className="relative h-[55vh] min-h-[360px] border-b-4 border-ink">
-        <Photo src={cover?.src} alt={cover?.alt ?? project.title} />
+        <Photo src={cover?.src} alt={cover?.alt ?? project.title} sizes="100vw" priority fit="contain" />
         <div className="absolute inset-x-0 bottom-0">
           <div className="mx-auto max-w-5xl px-4 pb-6 sm:px-6">
             <div className="px-box inline-block max-w-3xl bg-paper p-5">
