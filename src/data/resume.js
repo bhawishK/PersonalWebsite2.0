@@ -266,16 +266,17 @@ export const PROJECTS = [
 
 export const ACHIEVEMENTS = [
   {
-    title: "Top 20 Cyberport CUPP & Best Pitch Award",
+    title: "Best Pitch Award",
     where: "London School of Economics",
-    date: "June 2026",
+    date: "Aug 2026",
     description:
       "Developed blockchain-based invoice financing, supporting invoice verification, tokenization, and smart-contract integration to connect SMEs with investors.",
     media: "lse",
     color: "sun",
   },
   {
-    title: "Young Creative Entrepreneur (YCE) Award",
+    title: "Young Creative Entrepreneur",
+     where: "Hong Kong Baptist University",
     date: "Sept 2026",
     description:
       "Won prototype funding for ArtDeck Kit, a cyberdeck for interactive media art combining hardware & software.",
@@ -283,7 +284,8 @@ export const ACHIEVEMENTS = [
     color: "bubble",
   },
   {
-    title: "Merit Award at Samsung Solve for Tomorrow",
+    title: "Merit Award",
+    where: "Samsung Hong Kong",
     date: "April 2026",
     description:
       "Won merit recognition for building a food redistribution platform aligned with UN SDG 2: Zero Hunger.",
