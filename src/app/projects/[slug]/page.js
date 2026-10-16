@@ -2,9 +2,15 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FaGithub } from "react-icons/fa";
 import { FiExternalLink, FiFileText } from "react-icons/fi";
+import Image from "next/image";
 import Photo from "@/components/pixel/Photo";
 import { MEDIA } from "@/data/media";
 import { PROJECTS } from "@/data/resume";
+
+function youtubeId(url) {
+  const match = url?.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);
+  return match?.[1] ?? null;
+}
 
 export function generateStaticParams() {
   return PROJECTS.map((p) => ({ slug: p.slug }));
@@ -31,9 +37,10 @@ export default async function ProjectPage({ params }) {
   const next = PROJECTS[(index + 1) % PROJECTS.length];
   const cover = MEDIA[project.cover];
   const gallery = project.gallery
-    .map((g) => MEDIA[g.media] && { ...MEDIA[g.media], caption: g.caption ?? MEDIA[g.media].caption })
+    .map((g) => MEDIA[g.media] && { ...MEDIA[g.media], caption: g.caption ?? MEDIA[g.media].caption, wide: g.wide })
     .filter(Boolean);
   const links = Object.entries(project.links ?? {}).filter(([, url]) => url);
+  const videoId = youtubeId(project.video);
 
   return (
     <article className="min-h-screen border-b-4 border-ink bg-paper">
@@ -68,6 +75,7 @@ export default async function ProjectPage({ params }) {
             </ul>
             {project.details.length > 0 && (
               <div className="space-y-4 text-lg leading-relaxed">
+                <h2 className="font-display text-2xl uppercase leading-relaxed">Write-up</h2>
                 {project.details.map((d) => (
                   <p key={d}>{d}</p>
                 ))}
@@ -99,23 +107,49 @@ export default async function ProjectPage({ params }) {
           </aside>
         </section>
 
+        {videoId && (
+          <section className="mt-14">
+            <h2 className="font-display text-2xl uppercase leading-relaxed sm:text-3xl">Demo</h2>
+            <div className="px-box mt-5 aspect-video overflow-hidden bg-ink">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+                title={`${project.title} demo`}
+                className="h-full w-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          </section>
+        )}
+
         {gallery.length > 0 && (
           <section className="mt-14">
             <h2 className="font-display text-2xl uppercase leading-relaxed sm:text-3xl">Gallery</h2>
-            <div className="mt-5 grid auto-rows-[220px] gap-4 sm:grid-cols-2 sm:auto-rows-[260px]">
-              {gallery.map((g, i) => (
+            <div className="mt-5 grid items-start gap-4 sm:grid-cols-2">
+              {gallery.map((g, i) => {
+                const crisp = (g.width ?? 1600) < 900;
+                return (
                 <figure
                   key={`${g.src}-${i}`}
-                  className={`px-box relative overflow-hidden bg-paper ${i === 0 && gallery.length % 2 === 1 ? "sm:col-span-2" : ""}`}
+                  className={`px-box overflow-hidden bg-ink ${g.wide ? "sm:col-span-2" : ""}`}
                 >
-                  <Photo src={g.src} alt={g.alt} />
+                  <Image
+                    src={g.src}
+                    alt={g.alt}
+                    width={g.width ?? 1600}
+                    height={g.height ?? 900}
+                    className={crisp ? "mx-auto h-auto max-w-full" : "h-auto w-full"}
+                    style={crisp ? { width: g.width, height: "auto" } : undefined}
+                    sizes={g.wide ? "(min-width: 1024px) 960px, 100vw" : "(min-width: 640px) 50vw, 100vw"}
+                  />
                   {g.caption && (
-                    <figcaption className="absolute bottom-0 left-0 border-r-[3px] border-t-[3px] border-ink bg-paper px-3 py-1 font-term text-lg">
+                    <figcaption className="border-t-[3px] border-ink bg-paper px-3 py-1 font-term text-lg">
                       {g.caption}
                     </figcaption>
                   )}
                 </figure>
-              ))}
+                );
+              })}
             </div>
           </section>
         )}
