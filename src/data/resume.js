@@ -30,7 +30,7 @@ export const PROFILE = {
 
 export const EDUCATION = [
   {
-    school: "Hong Kong Baptist University (HKBU)",
+    school: "Hong Kong Baptist University",
     location: "Hong Kong",
     degree: "B.Sc. (Hons) in Computer Science",
     gpaLabel: "cGPA",
@@ -47,7 +47,7 @@ export const EDUCATION = [
     color: "azure",
   },
   {
-    school: "Beijing Normal–Hong Kong Baptist University (BNBU)",
+    school: "Beijing Normal–Hong Kong Baptist University",
     location: "Zhuhai, China",
     degree: "Extended Study Programme",
     gpaLabel: "GPA",
@@ -58,7 +58,7 @@ export const EDUCATION = [
     color: "mint",
   },
   {
-    school: "London School of Economics (LSE Generate)",
+    school: "London School of Economics",
     location: "London, UK",
     degree: "Entrepreneurship Bootcamp",
     dates: "Jun 2026",
