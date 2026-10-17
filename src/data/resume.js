@@ -13,7 +13,7 @@ export const PROFILE = {
   resumePdf: "/pdfs/Resume.pdf",
   photo: "munSpeech",
   summary:
-    "I'm a Computer Science undergraduate at Hong Kong Baptist University. I got into CS because I love games, and I stayed because of the problems behind them: how machines perceive the world, how systems talk to each other, and how software can be made for people. Right now my research is on vision-language perception and grounding across campus cameras (IEEE MetaCom 2026). Outside the lab I ship production software and run a student coding community.",
+    "I'm final year computer science student with a minor in information systems. I didn't choose Computer Science bur rather it choose me. Growing up, I spent countless hours playing video games until one day, curiosity took over: How do I build my own? Since that, I have been learning to program, design and improving my skills with the mindset that something I build might help someone or entertain them! ",
   interests: [
     "Virtual Reality & Augmented Reality",
     "Multimodal Artificial Intelligence",
