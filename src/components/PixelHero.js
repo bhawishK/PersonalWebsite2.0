@@ -38,6 +38,7 @@ export default function PixelHero() {
   const [cells, setCells] = useState([]);
   const [active, setActive] = useState(null);
   const [lightbox, setLightbox] = useState(null);
+  const [journey, setJourney] = useState(null); // { color } after clicking a color bit
 
   const photos = useMemo(
     () => HERO_PHOTOS.map((key) => MEDIA[key]).filter((m) => m?.src).map((m) => ({ ...m })),
@@ -118,9 +119,35 @@ export default function PixelHero() {
     }));
     cellsRef.current = out;
     nodeRefs.current = [];
+    paletteRef.current = null;
     setActive(null);
+    setJourney(null);
     setCells(out);
   }, [photos.length]);
+
+  const paletteRef = useRef(null);
+
+  const fillJourney = useCallback((color) => {
+    setCells((prev) => {
+      if (!paletteRef.current) paletteRef.current = prev.map((c) => c.color);
+      const next = prev.map((c) => (c.photo === null ? { ...c, color } : c));
+      cellsRef.current = next;
+      return next;
+    });
+    setJourney({ color });
+  }, []);
+
+  const restoreHero = useCallback(() => {
+    setCells((prev) => {
+      const saved = paletteRef.current;
+      if (!saved) return prev;
+      const next = prev.map((c, i) => ({ ...c, color: saved[i] ?? c.color }));
+      cellsRef.current = next;
+      paletteRef.current = null;
+      return next;
+    });
+    setJourney(null);
+  }, []);
 
   useEffect(() => {
     build();
@@ -161,7 +188,18 @@ export default function PixelHero() {
     setActive(null);
   }, []);
 
+  useEffect(() => {
+    if (!journey) return;
+    reset();
+    const onKey = (e) => {
+      if (e.key === "Escape") restoreHero();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [journey, reset, restoreHero]);
+
   const onPointerMove = (e) => {
+    if (journey) return;
     if (e.pointerType !== "mouse") return;
     const fr = fieldRef.current.getBoundingClientRect();
     const mx = e.clientX - fr.left;
@@ -209,18 +247,20 @@ export default function PixelHero() {
               ref={(el) => (nodeRefs.current[i] = el)}
               style={style}
               onClick={() => setLightbox(c.photo)}
-              className="hero-bit absolute overflow-hidden border-2 border-ink bg-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-sun"
+              className={`hero-bit absolute overflow-hidden border-2 border-ink bg-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-sun ${journey ? "pointer-events-none" : ""}`}
               aria-label={photo.caption}
             >
               <Image src={photo.src} alt="" fill sizes="220px" className="object-cover" draggable={false} />
             </button>
           ) : (
-            <div
+            <button
               key={`${c.x}-${c.y}`}
+              type="button"
               ref={(el) => (nodeRefs.current[i] = el)}
-              style={style}
-              className="hero-bit absolute border-2 border-ink"
-              aria-hidden
+              style={{ ...style, transition: "background-color 280ms ease" }}
+              onClick={() => fillJourney(c.color)}
+              className={`hero-bit absolute border-2 border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-sun ${journey ? "pointer-events-none" : ""}`}
+              aria-label="Be a part of my journey"
             />
           );
         })}
@@ -232,6 +272,24 @@ export default function PixelHero() {
           >
             {label.text}
           </span>
+        )}
+
+        {journey && (
+          <div
+            className="px-box absolute bottom-4 left-1/2 z-[56] flex w-[min(420px,calc(100%-24px))] -translate-x-1/2 flex-col items-center gap-3 p-4 text-center shadow-px"
+            style={{ backgroundColor: journey.color }}
+            role="status"
+          >
+            <p className="font-display text-base uppercase leading-relaxed sm:text-lg">Be a part of my journey</p>
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              <a href={`mailto:${PROFILE.email}`} className="px-btn bg-paper">
+                Say hello
+              </a>
+              <button type="button" onClick={restoreHero} className="px-chip bg-ink text-paper" aria-label="Back to the hero">
+                X
+              </button>
+            </div>
+          </div>
         )}
 
         <div
